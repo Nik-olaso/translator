@@ -1,11 +1,12 @@
 from googletrans import Translator, LANGUAGES
 
 
-translator = Translator()
-all_languages = LANGUAGES
+print("Список доступных языков:")
+for key, value  in LANGUAGES.items():
+	print(f"{value}: {key}")
 
-print(f"Список доступных языков: \n{all_languages}")
-language = input("Выберите один из доступных языков:")
+language = input("Выберите один из доступных языков: ")
+
 title = 'Music’s Impact and Influence on Everyday Life'
 
 text = '''As a person who loves music and even got into playing an instrument myself, it does have an influence on my everyday life. I’m constantly listening to music whether it be while working during class, in the car on my way home, or just while practicing playing the guitar. Music is all around the world and one of the most popular forms of entertainment and escape. It consists of many different styles and opinions, whether it be just personal opinion or even a part of your culture. \n
@@ -23,6 +24,14 @@ author = 'Bryleigh Conley'
 
 date = 'April 12, 2023'
 
-translations = translator.translate([title, author, date, text], dest=language)
-for translation in translations:
-    print(translation.text, '\n')
+full_text = f"""{title}
+{author}
+
+{date} 
+
+{text}
+"""
+
+translator = Translator()
+translations = translator.translate(full_text, dest=language).text
+print(translations)
